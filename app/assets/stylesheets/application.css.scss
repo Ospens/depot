@@ -39,16 +39,21 @@
     background: #141;
 
     #main {
-        margin-left: 17em;
-        padding: 1em;
+        //margin-left: 17em;
+        //padding: 1em;
+        float: left;
+        width: 70%;
         background: white;
+        margin-top: 10px;
     }
 
     #side {
         float: left;
-        padding: 1em 2em;
-        width: 13em;
+        //padding: 1em 2em;
+        width: 30%;
         background: #141;
+        height: 1000px;
+        margin-top: 10px;
 
         form, div {
           display: inline;
