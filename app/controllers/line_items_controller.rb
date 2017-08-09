@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
 
   include CurrentCart
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :decrement]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
 
@@ -34,7 +34,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to store_url, notice: 'Line item was successfully updated.'  }
+        format.html { redirect_to store_url  }
         format.js {@current_item = @line_item}
         format.json { render :show, status: :created, location: @line_item }
       else
@@ -70,12 +70,12 @@ class LineItemsController < ApplicationController
   end
 
   def decrement
-    product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product.id)
+    product = Product.find(params[:line_item_id])
+    @line_item = @cart.delete_product(product.id)
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to store_url, notice: 'Line item was successfully updated.'  }
+        format.html { redirect_to store_url  }
         format.js {@current_item = @line_item}
         format.json { render :show, status: :created, location: @line_item }
       else
